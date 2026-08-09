@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>透析クリニック薬剤師 日報作成ツール</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,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" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="薬剤師日報">
+<meta name="theme-color" content="#2A4F42">
+<style>
+  :root{
+    --paper:#F7F5EF;
+    --card:#FFFFFF;
+    --ink:#2B2E2A;
+    --ink-soft:#6B6F68;
+    --green:#3C6E5C;
+    --green-dark:#2A4F42;
+    --amber:#C97A3D;
+    --line:#DCD6C8;
+    --mono-bg:#FBF9F4;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---- header : 処方箋パッドふうのミシン目 ---- */
+  header{
+    background:var(--green-dark);
+    color:#F3EFE3;
+    padding:28px 24px 34px;
+    position:relative;
+  }
+  header .eyebrow{
+    font-size:12px;
+    letter-spacing:.18em;
+    color:#B9CFC4;
+    margin:0 0 6px;
+  }
+  header h1{
+    margin:0;
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  header p.sub{
+    margin:8px 0 0;
+    font-size:13px;
+    color:#CBDDD3;
+  }
+  .perforation{
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    height:14px;
+    background:
+      radial-gradient(circle at 12px 0, var(--paper) 6px, transparent 7px) repeat-x;
+    background-size:24px 14px;
+  }
+
+  main{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 20px 80px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  @media (max-width:900px){
+    main{grid-template-columns:1fr; padding:28px 16px 60px;}
+  }
+
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:22px 22px 26px;
+  }
+  .panel h2{
+    font-size:15px;
+    margin:0 0 4px;
+    color:var(--green-dark);
+    letter-spacing:.04em;
+  }
+  .panel .desc{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+  }
+
+  .field{margin-bottom:16px;}
+  .field label{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .field label .tag{
+    font-size:10px;
+    font-weight:600;
+    color:var(--amber);
+    border:1px solid var(--amber);
+    border-radius:3px;
+    padding:1px 5px;
+    letter-spacing:.05em;
+  }
+  .field input[type=text], .field input[type=date], .field textarea{
+    width:100%;
+    font-family:inherit;
+    font-size:13.5px;
+    color:var(--ink);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:9px 10px;
+    background:#FDFCFA;
+    resize:vertical;
+  }
+  .field textarea{min-height:56px;}
+  .field input:focus, .field textarea:focus{
+    outline:2px solid var(--green);
+    outline-offset:1px;
+    border-color:var(--green);
+  }
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+
+  .generate-btn{
+    width:100%;
+    margin-top:6px;
+    background:var(--amber);
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    padding:13px;
+    font-size:14.5px;
+    font-weight:700;
+    letter-spacing:.04em;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .generate-btn:hover{background:#B36930;}
+  .generate-btn:focus-visible{outline:2px solid var(--green-dark); outline-offset:2px;}
+
+  /* ---- output : お薬情報の紙ラベル風 ---- */
+  .output-wrap{position:sticky; top:20px; align-self:start;}
+  .label-strip{
+    height:6px;
+    background:repeating-linear-gradient(90deg, var(--green) 0 14px, var(--amber) 14px 28px);
+    border-radius:6px 6px 0 0;
+    margin:-22px -22px 18px;
+  }
+  #reportOut{
+    white-space:pre-wrap;
+    font-family:"SFMono-Regular",Consolas,"Courier New",monospace;
+    font-size:13px;
+    line-height:1.85;
+    background:var(--mono-bg);
+    border:1px dashed var(--line);
+    border-radius:5px;
+    padding:16px;
+    min-height:320px;
+    color:var(--ink);
+  }
+  #reportOut:empty::before{
+    content:"左側の項目を入力して「日報を生成」を押すと、ここにコピペ用のテキストが表示されます。";
+    color:var(--ink-soft);
+    font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;
+  }
+  .copy-btn{
+    margin-top:14px;
+    width:100%;
+    background:var(--green);
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    padding:12px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .copy-btn:hover{background:var(--green-dark);}
+  .copy-btn.copied{background:var(--green-dark);}
+  .copy-note{
+    font-size:12px;
+    color:var(--ink-soft);
+    text-align:center;
+    margin-top:8px;
+    min-height:16px;
+  }
+
+  footer{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    padding:0 20px 30px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">DIALYSIS CLINIC PHARMACIST · DAILY REPORT TOOL</p>
+  <h1>透析クリニック薬剤師 日報作成ツール</h1>
+  <p class="sub">週3回通う透析患者さんへの相談対応や定期薬の準備など、日々の業務メモを入れるだけでコピペできる日報に整えます。ブラウザ内だけで動作し、入力内容はどこにも送信されません。</p>
+  <div class="perforation"></div>
+</header>
+
+<main>
+  <!-- 入力パネル -->
+  <section class="panel">
+    <h2>メモを入力</h2>
+    <p class="desc">箇条書きでも単語だけでも構いません。空欄の項目は日報から自動で省かれます。</p>
+
+    <div class="field row2">
+      <div>
+        <label for="f_date">日付</label>
+        <input type="date" id="f_date">
+      </div>
+      <div>
+        <label for="f_name">記入者</label>
+        <input type="text" id="f_name" placeholder="例）山田 花子">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="f_patients">本日の透析患者対応 <span class="tag">薬剤師</span></label>
+      <textarea id="f_patients" placeholder="例）対応患者数、透析中に訪室した患者、体調変化の申告など"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="f_counsel">服薬相談・生活指導 <span class="tag">薬剤師</span></label>
+      <textarea id="f_counsel" placeholder="例）リン吸着薬・カリウム吸着薬の飲み方相談、水分・食事制限に関する質問、シャント管理の指導など"></textarea>
+    </div>
+
+
+    <div class="field">
+      <label for="f_query">疑義照会・処方調整 <span class="tag">薬剤師</span></label>
+      <textarea id="f_query" placeholder="例）腎機能・透析による除去を考慮した用量調整、服薬タイミング（透析前後）の確認、対象医師と結果"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="f_team">多職種連携 <span class="tag">薬剤師</span></label>
+      <textarea id="f_team" placeholder="例）医師・看護師・管理栄養士との情報共有、カンファレンスでの報告事項"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="f_incident">ヒヤリハット・インシデント <span class="tag">薬剤師</span></label>
+      <textarea id="f_incident" placeholder="例）薬の飲み間違い・渡し間違いのニアミスや対応"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="f_stock">在庫・発注業務</label>
+      <textarea id="f_stock" placeholder="例）ESA製剤・鉄剤・リン吸着薬などの在庫状況、発注内容、期限切れ確認"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="f_study">研修・勉強会</label>
+      <textarea id="f_study" placeholder="例）参加した研修、共有すべき情報"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="f_handover">申し送り・明日への引き継ぎ</label>
+      <textarea id="f_handover" placeholder="例）翌日確認事項、他スタッフへの連絡事項"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="f_other">その他・所感</label>
+      <textarea id="f_other" placeholder="自由記入"></textarea>
+    </div>
+
+    <button class="generate-btn" onclick="generateReport()">日報を生成</button>
+  </section>
+
+  <!-- 出力パネル -->
+  <section class="panel output-wrap">
+    <div class="label-strip"></div>
+    <h2>生成された日報</h2>
+    <p class="desc">そのままコピーして、報告システムやメールに貼り付けられます。</p>
+    <div id="reportOut"></div>
+    <button class="copy-btn" id="copyBtn" onclick="copyReport()">コピーする</button>
+    <p class="copy-note" id="copyNote"></p>
+  </section>
+</main>
+
+<footer>このツールはブラウザ内のみで動作します。入力内容は保存・送信されません。</footer>
+
+<script>
+  // 日付初期値を今日にする
+  (function(){
+    const d = new Date();
+    const iso = d.toISOString().slice(0,10);
+    document.getElementById('f_date').value = iso;
+  })();
+
+  function formatDateJP(iso){
+    if(!iso) return '';
+    const d = new Date(iso + 'T00:00:00');
+    const week = ['日','月','火','水','木','金','土'][d.getDay()];
+    return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${week}）`;
+  }
+
+  function block(title, value){
+    if(!value || !value.trim()) return '';
+    return `■ ${title}\n${value.trim()}\n\n`;
+  }
+
+  function generateReport(){
+    const date = formatDateJP(document.getElementById('f_date').value);
+    const name = document.getElementById('f_name').value.trim();
+
+    let out = '【薬剤師 日報】\n';
+    if(date) out += `日付：${date}\n`;
+    if(name) out += `記入者：${name}\n`;
+    out += '\n';
+
+    out += block('本日の透析患者対応', document.getElementById('f_patients').value);
+    out += block('服薬相談・生活指導', document.getElementById('f_counsel').value);
+    out += block('疑義照会・処方調整', document.getElementById('f_query').value);
+    out += block('多職種連携', document.getElementById('f_team').value);
+    out += block('ヒヤリハット・インシデント', document.getElementById('f_incident').value);
+    out += block('在庫・発注業務', document.getElementById('f_stock').value);
+    out += block('研修・勉強会', document.getElementById('f_study').value);
+    out += block('申し送り・引き継ぎ', document.getElementById('f_handover').value);
+    out += block('その他・所感', document.getElementById('f_other').value);
+
+    document.getElementById('reportOut').textContent = out.trim();
+    document.getElementById('copyNote').textContent = '';
+    document.getElementById('copyBtn').classList.remove('copied');
+    document.getElementById('copyBtn').textContent = 'コピーする';
+  }
+
+  function copyReport(){
+    const text = document.getElementById('reportOut').textContent;
+    if(!text.trim()){
+      document.getElementById('copyNote').textContent = '先に「日報を生成」を押してください。';
+      return;
+    }
+    navigator.clipboard.writeText(text).then(()=>{
+      document.getElementById('copyBtn').textContent = 'コピーしました ✓';
+      document.getElementById('copyBtn').classList.add('copied');
+      document.getElementById('copyNote').textContent = 'クリップボードにコピーされました。';
+      setTimeout(()=>{
+        document.getElementById('copyBtn').textContent = 'コピーする';
+        document.getElementById('copyBtn').classList.remove('copied');
+      }, 2200);
+    }).catch(()=>{
+      document.getElementById('copyNote').textContent = 'コピーに失敗しました。テキストを選択して手動でコピーしてください。';
+    });
+  }
+</script>
+
+</body>
+</html>
