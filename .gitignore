@@ -1,0 +1,14 @@
+# 作成した文書・教材など（GitHubに送らない）
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.csv
+*.pdf
+
+# Claude・Cloudflare・Node の作業用ファイル
+.claude/
+.wrangler/
+node_modules/
+.env
+.dev.vars
